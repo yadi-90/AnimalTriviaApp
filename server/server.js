@@ -1,14 +1,19 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const cors = require('cors');
-
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-
-app.get('/api', (req, res) => {
-    res.json({message: 'Hello from server!'});  
+app.get('/api/questions', async (req, res) => {
+  try {
+    const response = await fetch('https://opentdb.com/api.php?amount=10');
+    const data = await response.json();
+    res.json(data.results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
