@@ -1,44 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-
-const fetch = (url, init) =>
-window.fetch(url, init).then((res) => {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return res.json().then((err) => {
-      throw err;
-    });
-  }
-});
-
+import Header from './components/header.jsx';
+import UserForm from './components/user.jsx';
+import Game from './components/game.jsx';
+import './App.css';
+import { useState } from "react";
 
 function App() {
-  const fetchQuestions = async () => {
-    try {
-      const response = await fetch('/api/questions');
-      const questions = await response.json();
-      console.log(questions);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  fetchQuestions();
+  const [user, setUser] = useState("");
+  const handleUser = (text) =>{
+    setUser(text);
+  }
 
   return (
-    <>
-      <div>  
-       <h1>Animal App</h1>
-      </div>
-   
-    </>
-  )
+    <div className="App">
+    <Header user={user} />
+    <UserForm grabUser={handleUser} />
+    {user ? <Game /> : null}
+      
+    </div>
+  );
 }
 
-
-
-export default App
+export default App;
