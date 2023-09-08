@@ -2,9 +2,9 @@ const Header = (props) => {
 
     let message;
     if (props.user) {
-      message = `Welcome to my game ${props.user}`;
+      message = `Welcome to the AnimalKnow Game, ${props.user}!`;
     } else {
-      message = `Welcome to my game`;
+      message = `Want to test your animal knowledge? Enter your name to start!`;
     }
     
     return (
