@@ -2,11 +2,18 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { RequestInfo, RequestInit } from 'node-fetch';
+
 
 const fetch = (url, init) =>
-  import('node-fetch').then(({ default: fetch }) => fetch(url, init));
-
+window.fetch(url, init).then((res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return res.json().then((err) => {
+      throw err;
+    });
+  }
+});
 
 
 function App() {
@@ -31,5 +38,7 @@ function App() {
     </>
   )
 }
+
+
 
 export default App
