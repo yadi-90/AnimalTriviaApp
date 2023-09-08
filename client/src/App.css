@@ -1,0 +1,57 @@
+.logo{
+    height: 500px;
+    width: 500px;
+    display:center; 
+    flex-direction:column; 
+    justify-content:center;
+}
+
+.App {
+    background-color: #27a9dc;
+    font-family: "Raleway", sans-serif;
+    display:flex; 
+    flex-direction:column; 
+    justify-content:center;
+  }
+ 
+  .textHeader{
+    align-self: center;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: #bacdd8;
+  }
+  
+  .ListMain{
+    align-self: center;
+  }
+  
+  .question-count{
+    margin-top: 45px;
+  }
+  
+  .Container {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    align-self: center;
+  }
+  
+  .question-section{
+    /* Change background color */
+    background-color: white;
+
+  
+    /* Add border */
+    border: 1px solid #bacdd8;
+  
+    /* Add space between the border and the content */
+    padding: 8px;
+  
+    border-radius: 12px;
+  
+    width: 70%;
+  
+  }

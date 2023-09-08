@@ -1,14 +1,32 @@
-const express = require('express');
-const cors = require('cors');
+import data  from './data.js';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
 
 const app = express();
+const PORT = 3000;
 
-const PORT = process.env.PORT || 3000;
+// Configuring cors middleware
+app.use(cors());
 
-app.get('/api', (req, res) => {
-    res.json({message: 'Hello from server!'});  
-});
+// Configuring body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-});
+// //creates an endpoint for the route `/`
+app.get("/", (req, res) => {
+    res.json("Hello Techtonica Server for a Game");
+  });
+
+// Make the GET request for the GAME Api for grabbing all the questions 
+
+
+  // //hardcode the game response for testing reasons to don't saturate my API call. 
+app.get('/api/game', (req, res) =>{
+    res.json(data);
+})
+
+
+
+app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
