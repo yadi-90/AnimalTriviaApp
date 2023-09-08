@@ -4,11 +4,14 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 
 const cors = require('cors');
 const app = express();
+const PORT = 3000;
+
+const url='https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=boolean';
 
 app.get('/api/questions', async (req, res) => {
   try {
-    const response = await fetch('https://opentdb.com/api.php?amount=10');
-    const data = await response.json();
+    const response = await fetch('https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=boolean');
+        const data = await response.json();
     res.json(data.results);
   } catch (error) {
     console.error(error);
