@@ -1,24 +1,34 @@
-const express = require('express');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import fetch from 'node-fetch';
 
+// For testing my API I saving one response in a .js file 
+import data  from './data.js';
 
-const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
-const url='https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=boolean';
+// Configuring cors middleware
+app.use(cors());
 
-app.get('/api/questions', async (req, res) => {
-  try {
-    const response = await fetch('https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=boolean');
-        const data = await response.json();
-    res.json(data.results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred' });
-  }
-});
+// Configuring body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+// //creates an endpoint for the route `/`
+app.get("/", (req, res) => {
+    res.json("Hello Techtonica Server for a Game");
+  });
+
+// Make the GET request for the GAME Api for grabbing all the questions 
+
+
+  // //hardcode the game response for testing reasons to don't saturate my API call. 
+app.get('/api/game', (req, res) =>{
+    res.json(data);
+})
+
+
+
+app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
