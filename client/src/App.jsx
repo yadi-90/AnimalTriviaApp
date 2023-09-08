@@ -4,7 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-
+  const fetchQuestions = async () => {
+    try {
+      const response = await fetch('/api/questions');
+      const questions = await response.json();
+      console.log(questions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  fetchQuestions();
 
   return (
     <>
