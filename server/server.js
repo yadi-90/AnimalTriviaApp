@@ -1,10 +1,8 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import fetch from 'node-fetch';
-
-// For testing my API I saving one response in a .js file 
 import data  from './data.js';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+
 
 const app = express();
 const PORT = 3000;
